@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class HeatedHoseService {
 
-  url = 'http://comet/xap/hydt/hos001?JOB='
+  url = 'http://comet/xap/hyd/hos001?JOB='
 
   constructor(private http: HttpClient) { }
 
   getHeatedHose(jobNumber: string): Observable<IHeatedHoseResponse> {
-    // return this.http.get(this.url + jobNumber + '&HYDRAFLOW_USERCHECK=HYDRAFL0W_Js0N_USER_2019.1.Y')
-    return this.http.get<IHeatedHoseResponse>('../../assets/hose.json')
+    return this.http.get<IHeatedHoseResponse>(this.url + jobNumber + '&HYDRAFLOW_USERCHECK=HYDRAFL0W_Js0N_USER_2019.1.Y')
+    // return this.http.get<IHeatedHoseResponse>('../../assets/hose2.json')
   }
 
 }

@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-body">
+<div *ngIf="heatedHose" class="card">
+    <div *ngIf="heatedHose.TemplateNo !== '006' else NonHeated" class="card-body">
         <div class="row text-center">
             <div class="col">
                 <p>
@@ -31,7 +31,7 @@
             </div>
             <div class="col">
                 <p>
-                    <b>Lot Size - Feet       1 </b>
+                    <b>Lot Size - {{heatedHose.LotSize}}</b>
                 </p>
             </div>
         </div>
@@ -1434,36 +1434,37 @@
                                 <div class="row">
                                     <div class="col">
                                         <p>
-                                            <b>0.480 Ball Check</b></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> 
-                                                {{heatedHose['.480ballcheck']}} 
-                                            </p>
-                                        </div>
+                                            <b>0.480 Ball Check</b>
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>
-                                                <b>Visual</b>
-                                            </p>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p> 
+                                            {{heatedHose['.480ballcheck']}} 
+                                        </p>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> 
-                                                {{heatedHose.Visual}} 
-                                            </p>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Visual</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p> 
+                                            {{heatedHose.Visual}} 
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                    </div>
+                    <div class="col">
                             <div class="row">
                                 <div class="col">
                                     <p>
@@ -1540,15 +1541,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                </div>
             </div>
         </div>
         <hr>
         <hr>
         <div class="row">
             <div *ngFor="let item of heatedHose.label" class="col-4">
-                <div class="border p-2">
+                <div *ngIf="item['Line 1']" class="border p-2">
                     <p style="display: inline-block;">
                         {{item['Line 1']}}<br>
                         {{item['Line 2']}}<br>
@@ -1564,4 +1565,1231 @@
             </div>
         </div>
     </div>
+
+    <ng-template #NonHeated>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>{{heatedHose.ItemNo}}</b>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>{{heatedHose.Rev}}</b>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>Date: </b>
+                    {{heatedHose.DateTime}}
+                </p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>{{heatedHose.TemplateName}}</b>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>NOTE: {{heatedHose.Note1}}</b><br>
+                    <b>NOTE: {{heatedHose.Note3}}</b>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>Lot Size - {{heatedHose.LotSize}}</b>
+                </p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>JOB CARD NUMBER: </b>{{heatedHose.Jobno}}
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>SHIPPER NUMBER: </b>{{heatedHose.Shipper}}
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>PART NUMBER: </b>{{heatedHose.PartNo}}            
+                </p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <div class="row">
+                    <p>
+                        <b>NOTE: {{heatedHose.Note2}}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>Load PFA Innertube and Silicone Liner</b>
+                </p>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Support Mandrel</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.SupportMandrel}}            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Innertube</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.Intertube}}          
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Pressure (PSI) Ref</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            {{heatedHose.PressurePsiref}}  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Liner HMS102</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            {{heatedHose.LinerHSM102}}           
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Nozzle</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.Nozzle}}            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Form Tool</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.FormTool}}           
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>HS79-1-12 LOT &amp; P.O. #</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose['LOT NO. & P.O. NO.']}}                      
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>Flat Green Nomex Braid</b>
+                </p>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Flat Green Nomex</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.FlatGreenNomex}}         
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>No. of Ends</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.Noofends2}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>No. of Carriers</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.Noofcarriers}}             
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Upper Gear</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.UpperGear2}} 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Lower Gear</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.LowerGear2}}  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Tension Springs</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.Tensionspring2}}        
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.TensionspringDia2}}      
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Braider#</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.Braiderno2}}    
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Setup By</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.SetupBy2}}       
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.SetupByDate2}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Checked By</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.CheckBy}}                
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.CheckByDate}} 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>SD149-004 Nomex P.O. #</b>{{heatedHose.NomexPono}}       
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col d-flex justify-content-start">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Dimensional Check</b>       
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Length of 24 Picks</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.FlatGreenLengthof24Picks}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Hose OD</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.FlatGreenHoseOd}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row text-center">
+            <div class="col">
+                <p>
+                    <b>Wire Braid</b>
+                </p>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>{{heatedHose.WireDiameter}} Wire</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.WirePartNumber}}         
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>No. of Ends</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.NoofEnds6}}  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>No. of Carriers</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.NoofCarriers6}}                
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Upper Gear</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.UpperGear6}}  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Lower Gear</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>   
+                            {{heatedHose.LowerGear6}}  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Tension Springs</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.TensionSpring6}}      
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.TensionSpringDia6}}      
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Braider#</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.BraiderNo6}}    
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Setup By</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.SetupBy6}}          
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.SetupByDate6}} 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Checked By</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.CheckedBy6}}       
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p> 
+                            {{heatedHose.CheckedByDate6}} 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>{{heatedHose.WirePartNumber}}Wire P.O. #</b>{{heatedHose.PONumber6}}        
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col d-flex justify-content-start">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Dimensional Check</b>       
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Length of 24 Picks</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.WireBraidLengthof24Picks}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Hose OD</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.WireBraidHoseOd}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row text-center">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>BRAIDING RING MUST BE DOWN</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Green Nomex Braid</b>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Twisted Green Nomex</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.TwistedGreenNomex}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>No. of Ends</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>   
+                                    {{heatedHose.NoofEnds7}}  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>No. of Carriers</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.NoofCarriers7}}                
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>No. of 1 End Marks SD108-001 Kevlar</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>   
+                                    {{heatedHose['SD108-001 Kevlar']}}  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>No. of 1 End Marks SD150-002 Black Nylon</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>   
+                                    {{heatedHose['SD150-001 Black Nylon']}}  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Back Gear</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>   
+                                    {{heatedHose.Back}}  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Front Gear</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>   
+                                    {{heatedHose.Front}}  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Braider#</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.BraiderNo7}}    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Setup By</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.SetupBy7}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.SetupByDate7}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Checked By</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.CheckedBy7}}       
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.CheckedByDate7}} 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Run Kevlar Markers in Opposing Directions</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>SD149-004 Nomex &amp; SD108-001 Kevlar &amp; SD150-002 NYLON P.O. #</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.PONumber7}}, {{heatedHose.KevlarPo}}, {{heatedHose.NylonPONumber}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col d-flex justify-content-start">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Dimensional Check</b>       
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Length of 5 Pitches</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.LengthOf5Pitches}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Hose OD</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    {{heatedHose.TwistedHoseOd}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <p *ngFor="let item of heatedHose.Instructions.split('~')" class="mb-0">
+                    {{item}}
+                </p>
+
+                <!-- <p class="mb-0"> 
+                    1. Cure Setting: Hose: HS79H,Size -12, No of Hoses: (Enter No.) 
+                </p>
+                <p class="mb-0"> 
+                    2. Allow 30 minutes minumum for cooling after cure 
+                </p>
+                <p class="mb-0"> 
+                    3. Apply primer/toluene mixture at 1:1 ratio 
+                </p>
+                <p class="mb-0"> 
+                    4. Allow hose to air dry 
+                </p>
+                <p class="mb-0"> 
+                    5. Post Cure Settings: Post Cure 
+                </p>
+                <p class="mb-0"> 
+                    6. Remove Mandrel 
+                </p>
+                <p class="mb-0"> 
+                    7. Perform Adhesion Test 
+                </p>
+                <p class="mb-0">  
+
+                </p> -->
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row text-center">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Final Checks After Cure</b>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b><u>1 Hose from Each Lot</u></b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Length of {{heatedHose.NoofPitches1}}</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>            
+                                            {{heatedHose.LengthofPitches}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Hose ID</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>       
+                                            {{heatedHose.HoseId}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Hose OD</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>       
+                                            {{heatedHose.HoseOd}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Preform Angle</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>       
+                                            {{heatedHose.PreformAngle}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Adhesion Test</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p> 
+                                            {{heatedHose.AdhesianTest}} 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col">
+                                <p>
+                                    <b>Record the Average Length for the Lot</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col">
+                                <p>
+                                    <b>Recure?:</b>{{heatedHose.Recure}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col">
+                                <p>
+                                    <b>Length After Recure:</b>{{heatedHose.Recurelength}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col">
+                                <p>
+                                    <b>(Record the Average for Recure Pieces Only)</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b><u>All Hoses</u></b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>0.480 Ball Check</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p> 
+                                                {{heatedHose['.480ballcheck']}} 
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>
+                                                <b>Visual</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p> 
+                                                {{heatedHose.Visual}} 
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>Conforms to HS80-16 Drawing & Cust Dwg</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    <b>OD</b>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>ID</b>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>Angle</b>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>Checked By</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.Od}} 
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.Id}} 
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p> 
+                                    {{heatedHose.Angle}} 
+                                </p>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>                           
+                                            {{heatedHose.CheckbyDraw}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>          
+                                            {{heatedHose.CheckbyDrawDate}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Checked By</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>                           
+                                            {{heatedHose.CheckbyFinal}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <b>Date</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>          
+                                            {{heatedHose.CheckbyFinalDate}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row">
+            <div *ngFor="let item of heatedHose.label" class="col-4">
+                <div *ngIf="item['Line 1']" class="border p-2">
+                    <p style="display: inline-block;">
+                        {{item['Line 1']}}<br>
+                        {{item['Line 2']}}<br>
+                        {{item['Line 3']}}<br>
+                        {{item['Line 4']}}<br>
+                        {{item['Line 5']}}<br>
+                        {{item['Line 6']}}<br>
+                        {{item['Line 7']}}<br>
+                        {{item['Line 8']}}<br>
+                    </p>
+                    <img height="100" width="100" class="align-baseline" src="http://comet/xap/hyd/showstm?IMAGE={{item.stamp}}">
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>

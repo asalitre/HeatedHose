@@ -3,5 +3,5 @@ import { HeatedHoseComponent } from './components/heated-hose/heated-hose.compon
 
 export const routes: Routes = [
     {path: '', redirectTo: 'Operations/Production/HeatedHose', pathMatch: 'full'},
-    {path: 'Operations/Production/HeatedHose', component: HeatedHoseComponent},
+    {path: 'Operations/Production/HeatedHose/:id', component: HeatedHoseComponent},
 ];

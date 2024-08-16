@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeatedHoseService } from '../../services/heated-hose.service';
 import { IHeatedHoseRecord } from '../../interface/IHeatedHoseRecord';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-heated-hose',
@@ -14,10 +15,15 @@ export class HeatedHoseComponent implements OnInit {
 
   heatedHose!: IHeatedHoseRecord;
 
-  constructor(private heatedHoseService: HeatedHoseService) {}
+  jobID!: string;
+
+  constructor(private heatedHoseService: HeatedHoseService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.heatedHoseService.getHeatedHose('123456').subscribe(
+
+    this.jobID = this.route.snapshot.params['id']
+
+    this.heatedHoseService.getHeatedHose(this.jobID).subscribe(
       (response) => {
         this.heatedHose = response.data[0].record
         console.log(this.heatedHose)
